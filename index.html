@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>User Settings</title>
+</head>
+<body>
+    <form id="userInputs" method="get">
+        <label for="numQuestions">Input number of questions</label>
+        <input name="numQuestions" type="text" minlength="1" maxlength="2" size="3" placeholder="#" id="numQuestions" required>
+        
+        <br>
+        <br>
+
+        <label for="subject">Pick a subject</label>
+
+        <select name="subject" id="subject">
+            <option value="null"></option>
+            <option value="addition">Addition</option>
+            <option value="subtraction">Subtraction</option>
+            <option value="multiplication">Multiplication</option>
+            <option value="division">Division</option>
+        </select>
+        
+        <br>
+        <br>
+
+        <button id="sendBtn" type="submit" style="cursor: pointer;">SEND</button>
+        <button id="resetBtn" type="reset" style="cursor: pointer;">RESET</button>
+    </form>
+    
+    <script src="main.js"></script>
+</body>
+</html>
