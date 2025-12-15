@@ -19,7 +19,9 @@ const resetBtn = document.getElementById('resetBtn')
 const fname = document.getElementById('firstName')
 const lname = document.getElementById('lastName')
 
-// store first names in local storage
+const appetizers = document.querySelectorAll('.appetizers')
+
+// collect first names and store in local storage
 fname.addEventListener('click', firstcustomers)
 
 function firstcustomers() {
@@ -35,7 +37,7 @@ function firstcustomers() {
     }
 }
 
-// store last names in local storage
+// collect last names and store in local storage
 lname.addEventListener('click', lastcustomers)
 
 function lastcustomers() {
@@ -51,11 +53,55 @@ function lastcustomers() {
     }
 }
 
+// collect appetizers and store in local storage
+function appetizerStorage() {
+    for (let i=0; i < appetizers.length; i++) {
+        const appNameAttr = appetizers[i].getAttribute('name')
+
+        if (appetizers[i].checked) {
+            localStorage.setItem(appNameAttr, 'on')
+        }
+
+        else {
+            localStorage.removeItem(appNameAttr)
+        }
+    }
+}
+
+
+// take the data and store in JSON format
+function ordersJSON() {
+    const fnameAttr = fname.getAttribute('name')
+    const lnameAttr = lname.getAttribute('name')
+
+    const selectedAppetizers = [];
+    
+    for (let i=0; i < appetizers.length; i++) {
+        const appNameAttr = appetizers[i].getAttribute('name')
+        const value = localStorage.getItem(appNameAttr);
+
+        // store apetizers in an empty list
+        if (value) {
+            selectedAppetizers.push(appNameAttr);
+        }
+    }
+
+    const orders = {
+        firstName: localStorage.getItem(fnameAttr),
+        lastName: localStorage.getItem(lnameAttr),
+        appetizers: selectedAppetizers
+    }
+    
+    console.log(JSON.stringify(orders))
+}
+
 // submit button sends data to local storage
 submitBtn.addEventListener('click', (ev) => {
     ev.preventDefault()
     firstcustomers()
     lastcustomers()
+    appetizerStorage()
+    ordersJSON()
 })
 
 // reset button clears local storage
