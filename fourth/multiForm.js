@@ -11,6 +11,11 @@ Value: John
             "appetizers": "Cheese Stick, Butter Biscuits",
             "entrées": "burger"}
         ]
+
+
+JSON.stringify(obj) → turns a JavaScript object into a string.
+
+JSON.parse(str) → turns a string that contains JSON back into a JavaScript object.
 }*/
 
 const submitBtn = document.getElementById('submitBtn')
@@ -95,8 +100,6 @@ function entreesStorage() {
         cookLevel.hidden = true
         localStorage.setItem(entreeNameAttr, entreeValue)
     }
-
-    // entree : {burger: rare}
 }
 
 // take the data and store in JSON format
@@ -105,7 +108,11 @@ function ordersJSON() {
     const lnameAttr = lname.getAttribute('name')
 
     const selectedAppetizers = [];
-    
+    const entreeNameAttr = entrees.getAttribute('name')
+
+    let CookLevelJSON = localStorage.getItem(entreeNameAttr)  
+
+    // for loop for appetizers
     for (let i=0; i < appetizers.length; i++) {
         const appNameAttr = appetizers[i].getAttribute('name')
         const value = localStorage.getItem(appNameAttr);
@@ -116,10 +123,20 @@ function ordersJSON() {
         }
     }
 
+    // for entrees
+    if (entrees.value == 'burger' || entrees.value == 'steak') {
+        CookLevelJSON = JSON.parse(localStorage.getItem(entreeNameAttr))
+    }
+
+    else {
+        CookLevelJSON 
+    }
+
     const orders = {
         firstName: localStorage.getItem(fnameAttr),
         lastName: localStorage.getItem(lnameAttr),
-        appetizers: selectedAppetizers
+        appetizers: selectedAppetizers,
+        entrees: CookLevelJSON
     }
     
     console.log(JSON.stringify(orders))
