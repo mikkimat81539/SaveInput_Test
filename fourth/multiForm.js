@@ -21,6 +21,10 @@ const lname = document.getElementById('lastName')
 
 const appetizers = document.querySelectorAll('.appetizers')
 
+const entrees = document.getElementById('entree') 
+
+const cookLevel = document.getElementById('cookLevel')
+
 // collect first names and store in local storage
 fname.addEventListener('click', firstcustomers)
 
@@ -68,6 +72,32 @@ function appetizerStorage() {
     }
 }
 
+// collect entrées and store in local storage
+entrees.addEventListener('change', entreesStorage)
+
+function entreesStorage() {
+    // take the value of what the user selected and store in LS
+    const entreeNameAttr = entrees.getAttribute('name')
+    const entreeValue = entrees.value
+    const cookLevelValue = cookLevel.value
+
+    // if burger and steak are selected unhide cookLevel
+    if (entreeValue == 'burger' || entreeValue == 'steak') {
+        const cookingType = {
+            [entreeValue]: cookLevelValue
+        }
+        cookLevel.hidden = false
+        localStorage.setItem(entreeNameAttr, JSON.stringify(cookingType))
+
+    }
+
+    else {
+        cookLevel.hidden = true
+        localStorage.setItem(entreeNameAttr, entreeValue)
+    }
+
+    // entree : {burger: rare}
+}
 
 // take the data and store in JSON format
 function ordersJSON() {
@@ -101,6 +131,7 @@ submitBtn.addEventListener('click', (ev) => {
     firstcustomers()
     lastcustomers()
     appetizerStorage()
+    entreesStorage()
     ordersJSON()
 })
 
