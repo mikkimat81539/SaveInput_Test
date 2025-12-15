@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>The Menu</title>
+</head>
+<body>
+    <h1><u><i>The Menu</i></u></h1>
+    <form>
+        <fieldset>
+            <legend>Enter Your Name</legend>
+            <label for="firstName">First Name</label>
+            <input name="firstName" id="firstName" type="text" placeholder="John" minlength="3" required>
+            <br>
+            <br>
+            <label for="lastName">Last Name</label>
+            <input name="lastName" id="lastName" type="text" placeholder="Doe" minlength="3" required>
+        </fieldset>
+
+        <fieldset>
+            <legend>Appetizers</legend>
+
+            <h3 style="margin-bottom: 5px; margin-top: 5px;">
+                <u>Pick an Appetizer</u>
+            </h3>
+
+            <label for="cheeseSticks">Cheese Sticks</label>
+            <input name="cheeseSticks" id="cheeseSticks" type="checkbox" class="appetizers">
+
+            <br>
+
+            <label for="wings">Buffalo Wings</label>
+            <input name="wings" id="wings" type="checkbox" class="appetizers">
+
+            <br>
+
+            <label for="nachos">Supreme Nachos</label>
+            <input name="nachos" id="nachos" type="checkbox" class="appetizers">
+
+            <br>
+
+            <label for="biscuits">Butter Biscuits</label>
+            <input name="biscuits" id="biscuits" type="checkbox" class="appetizers">
+
+            <br>
+
+            <label for="pizza">Multi Meat Pizza</label>
+            <input name="pizza" id="pizza" type="checkbox" class="appetizers">
+        </fieldset>
+
+        <fieldset>
+            <legend>Entrées</legend>
+            <label for="entree">
+                <h3 style="margin-bottom: 5px; margin-top: 5px;"><u>Pick an Entrées</u></h3>
+            </label>
+
+            <select name="entree" id="entree">
+                <option value="burger">Burger</option>
+                <option value="strips">Chicken Strips</option>
+                <option value="salmon">Salmon</option>
+                <option value="meatloaf">Meatloaf</option>
+                <option value="Chicken">Chicken Fried Steak</option>
+                <option value="steak">Steak</option>
+            </select>
+            
+            <select name="entree" id="cookLevel" hidden> <!--When user picks steak or burger show optgroup-->
+                <optgroup label="steak cooked level">
+                    <option value="rare">Rare</option>
+                    <option value="medRare">Medium Rare</option>
+                    <option value="medium">Medium</option>
+                    <option value="medWell">Medium Well</option>
+                    <option value="well">Well done</option>
+                </optgroup>
+            </select>
+        </fieldset>
+
+        <fieldset>
+            <legend>Sides</legend>
+            
+            <h3 style="margin-bottom: 5px; margin-top: 5px;"><u>Pick a Side</u></h3>
+
+            <label for="fries">French Fries</label>
+            <input name="sides" id="fries" type="radio" value="fries">
+
+            <br>
+            
+            <label for="Mpotatoes">Mashed Potatoes</label>
+            <input name="sides" id="Mpotatoes" type="radio" value="Mpotatoes">
+
+            <br>
+
+            <label for="Bpotatoes">Baked Potatoes</label>
+            <input name="sides" id="Bpotatoes" type="radio" value="Bpotatoes">
+
+            <br>
+
+            <label for="Lpotatoes">Loaded Potatoes</label>
+            <input name="sides" id="Lpotatoes" type="radio" value="Lpotatoes">
+
+            <br>
+
+            <label for="salad">Caesar Salad</label>
+            <input name="sides" id="salad" type="radio" value="salad">   
+            
+            <br>
+
+
+            <label for="rice">Fried Rice</label>
+            <input name="sides" id="rice" type="radio" value="rice">  
+            
+            <br>
+
+            <label for="macaroni">Mac and cheese</label>
+            <input name="sides" id="macaroni" type="radio" value="macaroni">
+        </fieldset>
+
+        <fieldset>
+            <legend>Desserts</legend>
+            <h3 style="margin-bottom: 5px; margin-top: 5px;"><u>Pick a Dessert</u></h3>
+
+            <label for="chocolate">Chocolate Cake</label>
+            <input name="chocolate" id="chocolate" type="checkbox" class="dessert">
+            <br>
+
+            <label for="pie">Pecan Pie</label>
+            <input name="pie" id="pie" type="checkbox" class="dessert">
+            <br>
+
+            <label for="iceCream">Vanilla Ice Cream</label>
+            <input name="iceCream" id="iceCream" type="checkbox" class="dessert">
+            <br>
+
+            <label for="cookie">Cookie Monster</label>
+            <input name="cookie" id="cookie" type="checkbox" class="dessert">
+        </fieldset>
+
+        <fieldset>
+            <legend>Drinks</legend>
+            <h3 style="margin-bottom: 5px; margin-top: 5px;"><u>Pick a Drink</u></h3>
+
+            <!-- Soft Drinks -->
+            <div class="drink-option">
+                <label>
+                    <input type="radio" name="drinkType" value="soft"> Soft Drinks
+                </label>
+
+                <select name="softDrinks" id="softDrinks">
+                    <option value="lemonade">Lemonade</option>
+                    <option value="sprite">Sprite</option>
+                    <option value="coca-cola">Coca Cola</option>
+                    <option value="diet-cola">Diet Cola</option>
+                    <option value="root-beer">Root Beer</option>
+                </select>
+            </div>
+
+            <br>
+
+            <!-- Alcoholic Beverages -->
+            <div class="drink-option">
+                <label>
+                    <input type="radio" name="drinkType" value="alcohol"> Alcoholic Beverages
+                </label>
+                
+                <select name="alcoholicDrinks" id="alcoholicDrinks">
+                    <option value="wine">Wine</option>
+                    <option value="beer">Beer</option>
+                    <option value="liquor">Liquor</option>
+                </select>
+            </div>
+        </fieldset>
+
+        <br>
+
+        <!--have button link to all forms-->
+        <button type="submit" id="submitBtn">Save Settings</button>
+        <button type="reset" id="resetBtn">Clear</button>
+    </form>
+
+    <script src="multiForm.js"></script>
+</body>
+</html>
