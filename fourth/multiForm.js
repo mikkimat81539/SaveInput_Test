@@ -156,11 +156,16 @@ function drinkStorage() {
             if (drinks[i].value === "soft") {
                 softdrink.hidden = false;
                 alcohol.hidden = true;
+
+                localStorage.setItem('soft', softdrink.value)
+                localStorage.removeItem('alcohol')
         } 
         
             else if (drinks[i].value === "alcohol") {
                 alcohol.hidden = false;
                 softdrink.hidden = true;
+                localStorage.setItem('alcohol', alcohol.value)
+                localStorage.removeItem('soft')
             }
         }
     }
