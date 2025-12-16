@@ -111,9 +111,11 @@ function entreesStorage() {
 // collect sides and store in local storage
 function sidesStorage() {
     for (i=0; i < sides.length; i++) {
-        const nameAttr = sides[i].getAttribute('name')
-        sideValues = sides[i].value
-        localStorage.setItem(nameAttr, sideValues)
+        if (sides[i].checked) {
+            const nameAttr = sides[i].getAttribute('name')
+            const sideValues = sides[i].value
+            localStorage.setItem(nameAttr, sideValues)
+        }
     }
 }
 
