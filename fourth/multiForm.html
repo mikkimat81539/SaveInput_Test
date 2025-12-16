@@ -112,6 +112,11 @@
 
             <label for="macaroni">Mac and cheese</label>
             <input name="sides" id="macaroni" type="radio" value="macaroni" class="sides">
+
+            <br>
+
+            <label for="null">No Sides</label>
+            <input name="sides" id="null" type="radio" value="null" class="sides">
         </fieldset>
 
         <fieldset>
@@ -144,7 +149,7 @@
                     <input type="radio" name="drinkType" value="soft"> Soft Drinks
                 </label>
 
-                <select name="softDrinks" id="softDrinks">
+                <select name="softDrinks" id="softDrinks" hidden>
                     <option value="lemonade">Lemonade</option>
                     <option value="sprite">Sprite</option>
                     <option value="coca-cola">Coca Cola</option>
@@ -161,7 +166,7 @@
                     <input type="radio" name="drinkType" value="alcohol"> Alcoholic Beverages
                 </label>
                 
-                <select name="alcoholicDrinks" id="alcoholicDrinks">
+                <select name="alcoholicDrinks" id="alcoholicDrinks" hidden>
                     <option value="wine">Wine</option>
                     <option value="beer">Beer</option>
                     <option value="liquor">Liquor</option>

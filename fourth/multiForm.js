@@ -32,6 +32,14 @@ const cookLevel = document.getElementById('cookLevel')
 
 const sides = document.querySelectorAll('.sides')
 
+const dessert = document.querySelectorAll('.dessert')
+
+const drinks = document.querySelectorAll('.drink-option input')
+
+const softdrink = document.getElementById('softDrinks')
+
+const alcohol = document.getElementById('alcoholicDrinks')
+
 // collect first names and store in local storage
 fname.addEventListener('click', firstcustomers)
 
@@ -112,13 +120,51 @@ function entreesStorage() {
 function sidesStorage() {
     for (i=0; i < sides.length; i++) {
         if (sides[i].checked) {
-            const nameAttr = sides[i].getAttribute('name')
+            const sideNameAttr = sides[i].getAttribute('name')
             const sideValues = sides[i].value
-            localStorage.setItem(nameAttr, sideValues)
+            localStorage.setItem(sideNameAttr, sideValues)
         }
     }
 }
 
+// collect desserts and store in local storage
+function dessertsStorage() {
+    for (let i=0; i < dessert.length; i++) {
+        const dessertNameAttr = dessert[i].getAttribute('name')
+        const dessertCheck = dessert[i].checked
+        
+        if (dessertCheck) {
+            localStorage.setItem(dessertNameAttr, 'on')
+        }
+
+        else {
+            localStorage.removeItem(dessertNameAttr)
+        }
+    }
+}
+
+// to loop through each drink when user selects drink
+drinks.forEach(i => {
+    i.addEventListener('change', drinkStorage);
+});
+
+// collect drinks and store in local storage
+function drinkStorage() {
+    
+    for (let i=0; i < drinks.length; i++) {
+        if(drinks[i].checked) {
+            if (drinks[i].value === "soft") {
+                softdrink.hidden = false;
+                alcohol.hidden = true;
+        } 
+        
+            else if (drinks[i].value === "alcohol") {
+                alcohol.hidden = false;
+                softdrink.hidden = true;
+            }
+        }
+    }
+}
 
 // take the data and store in JSON format
 function ordersJSON() {
@@ -128,20 +174,22 @@ function ordersJSON() {
     const selectedAppetizers = [];
     const entreeNameAttr = entrees.getAttribute('name')
 
-    let CookLevelJSON = localStorage.getItem(entreeNameAttr)  
+    let CookLevelJSON = localStorage.getItem(entreeNameAttr)
+
+    const dessertSelected = []
 
     // for loop for appetizers
     for (let i=0; i < appetizers.length; i++) {
         const appNameAttr = appetizers[i].getAttribute('name')
-        const value = localStorage.getItem(appNameAttr);
+        const Appvalue = localStorage.getItem(appNameAttr);
 
         // store apetizers in an empty list
-        if (value) {
+        if (Appvalue) {
             selectedAppetizers.push(appNameAttr);
         }
     }
 
-    // for entrees
+    // conditional statement for entrees
     if (entrees.value == 'burger' || entrees.value == 'steak') {
         CookLevelJSON = JSON.parse(localStorage.getItem(entreeNameAttr))
     }
@@ -150,11 +198,27 @@ function ordersJSON() {
         CookLevelJSON 
     }
 
+    // variables for sides
+    const sideNameAttr = sides[0].getAttribute('name')
+    const Sidevalue = localStorage.getItem(sideNameAttr)
+
+    // for loop for desserts
+        for (let i=0; i < dessert.length; i++) {
+            const dessertNameAttr = dessert[i].getAttribute('name')
+            const dessertCheck = dessert[i].checked
+
+            if (dessertCheck) {
+                dessertSelected.push(dessertNameAttr)
+            }
+        }
+
     const orders = {
         firstName: localStorage.getItem(fnameAttr),
         lastName: localStorage.getItem(lnameAttr),
         appetizers: selectedAppetizers,
-        entrees: CookLevelJSON
+        entrees: CookLevelJSON,
+        sides: Sidevalue,
+        desserts: dessertSelected
     }
     
     console.log(JSON.stringify(orders))
@@ -168,10 +232,13 @@ submitBtn.addEventListener('click', (ev) => {
     appetizerStorage()
     entreesStorage()
     sidesStorage()
+    dessertsStorage()
+    drinkStorage()
     ordersJSON()
 })
 
 // reset button clears local storage
 resetBtn.addEventListener('click', () => {
     localStorage.clear()
+    console.clear()
 })
