@@ -246,4 +246,6 @@ submitBtn.addEventListener('click', (ev) => {
 resetBtn.addEventListener('click', () => {
     localStorage.clear()
     console.clear()
+    alcohol.hidden = true;
+    softdrink.hidden = true;
 })
