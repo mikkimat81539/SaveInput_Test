@@ -30,6 +30,8 @@ const entrees = document.getElementById('entree')
 
 const cookLevel = document.getElementById('cookLevel')
 
+const sides = document.querySelectorAll('.sides')
+
 // collect first names and store in local storage
 fname.addEventListener('click', firstcustomers)
 
@@ -96,11 +98,25 @@ function entreesStorage() {
 
     }
 
+    else if (entreeValue == 'null') {
+        localStorage.removeItem(entreeNameAttr)
+    }
+
     else {
         cookLevel.hidden = true
         localStorage.setItem(entreeNameAttr, entreeValue)
     }
 }
+
+// collect sides and store in local storage
+function sidesStorage() {
+    for (i=0; i < sides.length; i++) {
+        const nameAttr = sides[i].getAttribute('name')
+        sideValues = sides[i].value
+        localStorage.setItem(nameAttr, sideValues)
+    }
+}
+
 
 // take the data and store in JSON format
 function ordersJSON() {
@@ -149,6 +165,7 @@ submitBtn.addEventListener('click', (ev) => {
     lastcustomers()
     appetizerStorage()
     entreesStorage()
+    sidesStorage()
     ordersJSON()
 })
 
