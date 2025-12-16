@@ -217,13 +217,24 @@ function ordersJSON() {
             }
         }
 
+    // for drinks
+    let drinkSelection = localStorage.getItem('soft')
+    if (!softdrink.hidden){
+        drinkSelection
+    }
+
+    else if (!alcohol.hidden) {
+        drinkSelection = localStorage.getItem('alcohol')
+    }
+
     const orders = {
         firstName: localStorage.getItem(fnameAttr),
         lastName: localStorage.getItem(lnameAttr),
         appetizers: selectedAppetizers,
         entrees: CookLevelJSON,
         sides: Sidevalue,
-        desserts: dessertSelected
+        desserts: dessertSelected,
+        drinks: drinkSelection
     }
     
     console.log(JSON.stringify(orders))
